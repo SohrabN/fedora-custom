@@ -22,6 +22,7 @@ Vagrant.configure("2") do |config|
     mock -r fedora-38-x86_64 --shell --isolation=simple --enable-network <<-MOCK
     
     # Clone Fedora kickstart files
+    sed -i '/\[main\]/a diskspacecheck=0' /etc/dnf/dnf.conf
     git clone https://pagure.io/fedora-kickstarts -b f38
     cd fedora-kickstarts
     cat << EOF > fedora-repo-not-rawhide.ks
