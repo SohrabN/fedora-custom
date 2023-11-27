@@ -19,7 +19,7 @@ bash ./install-plugins.sh
 Bring vagrant up.
 
 ```bash
-vagrant up
+vagrant up --provider=libvirt
 ```
 
 Once all operations are over, ISO is created on the vagrant box. Now we need to copy the ISO from guest to host.
