@@ -1,0 +1,17 @@
+4ops.packer
+4ops.terraform
+kosz78.nim
+ms-azuretools.vscode-docker
+ms-python.python
+ms-python.vscode-pylance
+ms-vscode-remote.remote-containers
+ms-vscode-remote.remote-ssh
+ms-vscode-remote.remote-ssh-edit
+ms-vscode.cmake-tools
+ms-vscode.cpptools
+ms-vscode.cpptools-extension-pack
+ms-vscode.cpptools-themes
+ms-vscode.remote-explorer
+redhat.ansible
+redhat.vscode-yaml
+twxs.cmake
