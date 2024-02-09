@@ -18,22 +18,20 @@ Vagrant.configure("2") do |config|
     # Install necessary packages inside mock
     mock -r fedora-38-x86_64 --install lorax anaconda git pykickstart vim
 
-    mock -r fedora-38-x86_64 --copyin /vagrant/vscode-extensions /vscode-extensions
-
     mock -r fedora-38-x86_64 --shell --isolation=simple --enable-network <<-MOCK  
      
     # Clone Fedora kickstart files
     sed -i '/\[main\]/a diskspacecheck=0' /etc/dnf/dnf.conf
-    git clone https://pagure.io/fedora-kickstarts -b f38
+    git clone https://pagure.io/fedora-kickstarts -b f39
     cd fedora-kickstarts
     cat << EOF > fedora-repo-not-rawhide.ks
-repo --name=fedora --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-38&arch=x86_64
-repo --name=updates --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f38&arch=x86_64
+repo --name=fedora --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-39&arch=x86_64
+repo --name=updates --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f39&arch=x86_64
 repo --name=code --baseurl=https://packages.microsoft.com/yumrepos/vscode
-repo --name=rpmfusion-free --baseurl=http://download1.rpmfusion.org/free/fedora/releases/38/Everything/x86_64/os/
-repo --name=copr:copr.fedorainfracloud.org:taw:joplin --baseurl=https://download.copr.fedorainfracloud.org/results/taw/joplin/fedora-38-x86_64/
+repo --name=rpmfusion-free --baseurl=http://download1.rpmfusion.org/free/fedora/releases/39/Everything/x86_64/os/
+repo --name=copr:copr.fedorainfracloud.org:taw:joplin --baseurl=https://download.copr.fedorainfracloud.org/results/taw/joplin/fedora-39-x86_64/
 
-url --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-38&arch=x86_64
+url --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-39&arch=x86_64
 EOF
     cat <<EOF > fedora-live-minimal-workstation.ks
 %include fedora-live-workstation.ks
@@ -95,7 +93,7 @@ rust
 realmd
 git
 vlc
-ffmpeg
+# ffmpeg
 ruby-devel
 libreoffice
 gnome-tweaks
@@ -136,7 +134,7 @@ EOF
     livemedia-creator --ks ks.cfg --no-virt --resultdir /var/lmc \
                       --project Fedora-minimal-workstation-Live --make-iso \
                       --volid Fedora-minimal-workstation-Live --iso-only \
-                      --iso-name Fedora-minimal-workstation-Live.iso --releasever 38 --macboot --image-size 10000
+                      --iso-name Fedora-minimal-workstation-Live.iso --releasever 39 --macboot --image-size 10000
 
   MOCK
     exit
